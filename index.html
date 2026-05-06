@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sand Pond — Deed Restrictions at a Glance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1f2620; --ink-soft: #3a4039; --ink-mute: #6c6f66;
+  --paper: #f5efe3; --paper-warm: #efe6d2; --paper-deep: #e7dcc1;
+  --rule: #cdc1a4;
+  --forest: #3a5a44; --forest-deep: #243a2c;
+  --brick: #9a4530;
+  --gold: #a88742;
+  --sage: #d8e4d4; --rose: #f0d4cc;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter Tight', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: #ddd4bb; display: flex; justify-content: center; padding: 2.5rem 1rem; }
+.page {
+  width: 1100px; background: var(--paper);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.22);
+  font-size: 13px; color: var(--ink);
+}
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header {
+  background: var(--forest-deep);
+  background-image: linear-gradient(150deg, var(--forest-deep) 0%, #1a2e22 100%);
+  color: var(--paper); padding: 3rem 3.5rem 2.5rem;
+  position: relative; overflow: hidden;
+}
+.header::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events: none; mix-blend-mode: overlay;
+}
+.header-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; }
+.header-eyebrow { font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.8rem; }
+.header-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+.header h1 { font-family: var(--serif); font-size: 3rem; font-weight: 400; font-style: italic; line-height: 1.08; letter-spacing: -0.015em; max-width: 18ch; }
+.header h1 em { font-style: normal; color: #f0e4c4; }
+.header-meta { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,239,227,0.65); line-height: 2; text-align: right; }
+.header-meta strong { color: var(--gold); display: block; font-weight: 500; }
+
+/* ── STATS ROW ───────────────────────────────────────────────── */
+.stats { display: grid; grid-template-columns: repeat(4,1fr); background: var(--forest); }
+.stat { padding: 1.8rem 1.5rem; text-align: center; border-right: 1px solid rgba(245,239,227,0.12); }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: var(--serif); font-size: 3.6rem; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+.stat-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,239,227,0.8); line-height: 1.5; }
+.stat-sub { font-size: 0.68rem; color: rgba(245,239,227,0.5); margin-top: 0.25rem; }
+
+/* ── SECTION CHROME ──────────────────────────────────────────── */
+.section { padding: 2.2rem 3.5rem; }
+.section + .section { border-top: 1px solid var(--rule); }
+.section-head { font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--brick); margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.8rem; font-weight: 600; }
+.section-head::before { content: ''; display: block; width: 28px; height: 1px; background: var(--brick); }
+.section h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; margin-bottom: 0.25rem; }
+.section-intro { font-size: 0.88rem; color: var(--ink-soft); max-width: 72ch; margin-bottom: 1.8rem; line-height: 1.6; }
+
+/* ── RESTRICTION BARS ────────────────────────────────────────── */
+.bars { display: flex; flex-direction: column; gap: 1.1rem; }
+.bar-row { display: grid; grid-template-columns: 250px 1fr 44px; align-items: center; gap: 1rem; }
+.bar-label { font-size: 0.8rem; font-weight: 500; color: var(--ink-soft); }
+.bar-track { height: 22px; background: var(--paper-deep); border-radius: 2px; overflow: hidden; position: relative; }
+.bar-fill { height: 100%; display: flex; align-items: center; padding-left: 0.7rem; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: width 0.6s ease; border-radius: 2px; }
+.bar-fill.commercial { background: var(--brick); color: white; }
+.bar-fill.enterprise { background: #b56247; color: white; }
+.bar-fill.trailers    { background: var(--forest); color: white; }
+.bar-fill.none        { background: var(--rule); color: var(--ink-mute); }
+.bar-count { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--ink-soft); text-align: right; }
+.bar-lots { font-size: 0.7rem; color: var(--ink-mute); margin-top: 0.15rem; }
+
+/* ── TIMELINE ────────────────────────────────────────────────── */
+.timeline-wrap { position: relative; padding: 1rem 0 2.5rem; overflow-x: auto; }
+.timeline-track { position: relative; height: 4px; background: var(--rule); margin: 3.5rem 1rem 0; border-radius: 2px; }
+.timeline-track::before { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--forest-deep), var(--forest)); border-radius: 2px; }
+.tl-items { display: flex; justify-content: space-between; }
+.tl-item { display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; }
+.tl-dot { width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid var(--paper); margin-top: -5px; position: relative; z-index: 2; flex-shrink: 0; }
+.tl-dot.restricted { background: var(--brick); }
+.tl-dot.strong { background: var(--forest); width: 18px; height: 18px; margin-top: -7px; }
+.tl-dot.none { background: var(--rule); }
+.tl-year { font-size: 0.65rem; font-weight: 600; color: var(--ink-mute); margin-top: 0.6rem; letter-spacing: 0.08em; }
+.tl-info { font-size: 0.62rem; color: var(--ink-soft); text-align: center; line-height: 1.4; margin-top: 0.3rem; max-width: 70px; }
+.tl-info strong { color: var(--forest); display: block; font-size: 0.68rem; }
+.tl-tag { display: inline-block; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.12rem 0.35rem; border-radius: 2px; margin-top: 0.25rem; }
+.tl-tag.r  { background: var(--rose); color: var(--brick); }
+.tl-tag.rt { background: var(--brick); color: white; }
+.tl-tag.n  { background: var(--paper-deep); color: var(--ink-mute); }
+.tl-legend { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.tl-leg-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; color: var(--ink-mute); }
+.tl-leg-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── LOT GRID ────────────────────────────────────────────────── */
+.lot-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; }
+.lot-card {
+  background: var(--paper-warm); border: 1px solid var(--rule);
+  padding: 1.1rem 1rem 1rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.lot-card.has-restriction { border-top: 3px solid var(--brick); padding-top: 0.9rem; }
+.lot-card.strongest { border-top: 3px solid var(--forest); }
+.lot-num { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--forest); line-height: 1; }
+.lot-grantee { font-size: 0.72rem; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.08em; }
+.lot-owner { font-size: 0.72rem; color: var(--ink-mute); }
+.lot-owner span { font-style: italic; }
+.lot-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.3rem; }
+.tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.18rem 0.45rem; border-radius: 2px; }
+.tag.row-tag { background: var(--sage); color: var(--forest-deep); }
+.tag.no-com  { background: var(--rose); color: var(--brick); }
+.tag.no-tent { background: var(--brick); color: white; }
+.tag.none    { background: var(--paper-deep); color: var(--ink-mute); }
+.lot-divider { height: 1px; background: var(--rule); margin: 0.2rem 0; }
+
+/* ── CALLOUT ─────────────────────────────────────────────────── */
+.callout {
+  background: var(--paper-deep); border-left: 3px solid var(--gold);
+  padding: 1.3rem 1.6rem; display: flex; gap: 1.4rem; align-items: flex-start;
+}
+.callout-num { font-family: var(--serif); font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1; flex-shrink: 0; }
+.callout-text h4 { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest); font-weight: 600; margin-bottom: 0.4rem; }
+.callout-text p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6; max-width: 70ch; }
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.footer { background: var(--forest-deep); color: rgba(245,239,227,0.65); padding: 1.4rem 3.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.footer-mark { font-family: var(--serif); font-size: 1.4rem; color: var(--gold); font-style: italic; }
+.footer-text { font-size: 0.65rem; letter-spacing: 0.04em; line-height: 1.65; max-width: 72ch; }
+
+@media print {
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-eyebrow">Sand Pond Association &middot; Sanford, Maine</div>
+      <h1>Deed Restrictions <em>at a Glance</em></h1>
+    </div>
+    <div class="header-meta">
+      <strong>Prepared by</strong>Sand Pond Association, LLC
+      <strong>Counsel</strong>Andrew Sparks &middot; Drummond Woodsum
+      <strong>Data source</strong>York County Registry of Deeds
+      <strong>Compiled</strong>April 24, 2026
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STATS ════════════════════════════════════════════════════ -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Lots in<br>Siddall's Scheme</div>
+    <div class="stat-sub">Tax map R-14</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">7</div>
+    <div class="stat-label">Carry Anti-Commercial<br>Deed Restrictions</div>
+    <div class="stat-sub">of 12 lots total</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Decades of Consistent<br>Deed Language</div>
+    <div class="stat-sub">1949 &ndash; 1992</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Lots with Strongest<br>Restriction</div>
+    <div class="stat-sub">No trailers or trailer tents</div>
+  </div>
+</div>
+
+<!-- ═══ RESTRICTION BREAKDOWN ════════════════════════════════════ -->
+<div class="section">
+  <div class="section-head">Restriction Breakdown</div>
+  <h2>What the deeds actually say — across all 12 lots</h2>
+  <p class="section-intro">Each restriction was recorded at the York County Registry of Deeds at the time of original conveyance from Miriam Siddall. Lots carrying multiple restrictions are counted in each applicable row below.</p>
+
+  <div class="bars">
+    <div class="bar-row">
+      <div>
+        <div class="bar-label">No commercial use</div>
+        <div class="bar-lots">Lots 18A, 34, 36, 38, 40, 52 &mdash; Patterson, Estes, Curcio, Tranchemontagne, Lewis, Razummny</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill commercial" style="width:50%">6 lots</div></div>
+      <div class="bar-count">6</div>
+    </div>
+    <div class="bar-row">
+      <div>
+        <div class="bar-label">No business enterprise</div>
+        <div class="bar-lots">Lot 49 &mdash; Rita Rose</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill enterprise" style="width:10%">1</div></div>
+      <div class="bar-count">1</div>
+    </div>
+    <div class="bar-row">
+      <div>
+        <div class="bar-label">No trailers or trailer tents for occupancy</div>
+        <div class="bar-lots">Lots 36, 38 &mdash; Curcio, Tranchemontagne &nbsp;·&nbsp; The strongest restriction; mirrors campground's proposed use</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill trailers" style="width:20%">2 lots</div></div>
+      <div class="bar-count">2</div>
+    </div>
+    <div class="bar-row">
+      <div>
+        <div class="bar-label">No restrictions recorded</div>
+        <div class="bar-lots">Lots 18, 33, 37, 47, 48 &mdash; Maroney/Purvis, L'Heureux, Roy, Hardy, Chayka</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill none" style="width:42%">5 lots</div></div>
+      <div class="bar-count">5</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CALLOUT ══════════════════════════════════════════════════ -->
+<div class="section" style="padding-top:0; border-top:none;">
+  <div class="callout">
+    <div class="callout-num">7</div>
+    <div class="callout-text">
+      <h4>The Heart of the Case</h4>
+      <p>Seven of twelve lots carry some form of anti-commercial restriction written by the same grantor over the same period &mdash; a pattern Maine courts recognize as a <em>common scheme of development</em>. Under this doctrine, the restrictions bind every parcel in the scheme, including the land Miriam Siddall retained. The developer&rsquo;s parcel is not exempt.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TIMELINE ═════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-head">Deed Timeline</div>
+  <h2>Four decades of the same promise</h2>
+  <p class="section-intro">Each dot represents a deed executed by Miriam Siddall. The consistent anti-commercial language across four decades is the evidentiary foundation of the common-scheme claim.</p>
+
+  <div class="timeline-wrap">
+    <div class="tl-items">
+      <!-- 1949 -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 49</strong>Ricard<br>→ Rita Rose</div>
+        <div class="tl-dot restricted"></div>
+        <div class="tl-year">1949</div>
+        <div><span class="tl-tag r">No commercial</span></div>
+      </div>
+      <!-- 1951 -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 36</strong>Legere<br>→ Curcio</div>
+        <div class="tl-dot strong"></div>
+        <div class="tl-year">1951</div>
+        <div><span class="tl-tag rt">No trailers</span></div>
+      </div>
+      <!-- 1954a -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 34</strong>Kimball<br>→ Estes</div>
+        <div class="tl-dot restricted"></div>
+        <div class="tl-year">1954</div>
+        <div><span class="tl-tag r">No commercial</span></div>
+      </div>
+      <!-- 1954b -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 40</strong>McMillen<br>→ Lewis</div>
+        <div class="tl-dot restricted"></div>
+        <div class="tl-year">1954</div>
+        <div><span class="tl-tag r">No commercial</span></div>
+      </div>
+      <!-- 1955 -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 38</strong>Roy<br>→ Tranchemontagne</div>
+        <div class="tl-dot strong"></div>
+        <div class="tl-year">1955</div>
+        <div><span class="tl-tag rt">No trailers</span></div>
+      </div>
+      <!-- 1956 -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 52</strong>McPherson<br>→ Razummny</div>
+        <div class="tl-dot restricted"></div>
+        <div class="tl-year">1956</div>
+        <div><span class="tl-tag r">No commercial</span></div>
+      </div>
+      <!-- 1967 -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 48</strong>Troccoli<br>→ Chayka</div>
+        <div class="tl-dot none"></div>
+        <div class="tl-year">1967</div>
+        <div><span class="tl-tag n">None</span></div>
+      </div>
+      <!-- 1990 -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 47</strong>Hardy<br>→ Hardy</div>
+        <div class="tl-dot none"></div>
+        <div class="tl-year">1990</div>
+        <div><span class="tl-tag n">None</span></div>
+      </div>
+      <!-- 1992a -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 33</strong>L'Heureux<br>→ L'Heureux</div>
+        <div class="tl-dot none"></div>
+        <div class="tl-year">1992</div>
+        <div><span class="tl-tag n">None</span></div>
+      </div>
+      <!-- 1992b -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 37</strong>Roy<br>→ Roy</div>
+        <div class="tl-dot none"></div>
+        <div class="tl-year">1992</div>
+        <div><span class="tl-tag n">None</span></div>
+      </div>
+      <!-- 18 — year unknown -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 18</strong>Maroney/Purvis<br>→ Maroney/Purvis</div>
+        <div class="tl-dot none"></div>
+        <div class="tl-year">&mdash;</div>
+        <div><span class="tl-tag n">Siddall Rd ROW</span></div>
+      </div>
+      <!-- 18A — year unknown -->
+      <div class="tl-item">
+        <div class="tl-info"><strong>Lot 18A</strong>Patterson<br>→ Patterson</div>
+        <div class="tl-dot restricted"></div>
+        <div class="tl-year">&mdash;</div>
+        <div><span class="tl-tag r">No commercial</span></div>
+      </div>
+    </div>
+    <div class="timeline-track"></div>
+
+    <div class="tl-legend">
+      <div class="tl-leg-item"><div class="tl-leg-dot" style="background:var(--forest)"></div>Strongest restriction (no trailers)</div>
+      <div class="tl-leg-item"><div class="tl-leg-dot" style="background:var(--brick)"></div>Anti-commercial restriction</div>
+      <div class="tl-leg-item"><div class="tl-leg-dot" style="background:var(--rule)"></div>No restriction recorded</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOT GRID ══════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-head">Lot-by-Lot Summary</div>
+  <h2>All 12 lots in the scheme</h2>
+  <p class="section-intro">Each card shows the original grantee, current owner, and restrictions recorded at conveyance. A <span style="display:inline-block;width:10px;height:3px;background:var(--brick);vertical-align:middle;border-radius:1px;margin:0 3px"></span> top border indicates anti-commercial restrictions; <span style="display:inline-block;width:10px;height:3px;background:var(--forest);vertical-align:middle;border-radius:1px;margin:0 3px"></span> indicates the strongest restriction.</p>
+
+  <div class="lot-grid">
+
+    <div class="lot-card">
+      <div class="lot-num">18</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Maroney/Purvis</div>
+      <div class="lot-owner">Current: <span>Maroney/Purvis</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">Subject to right of all lawful users to use Siddall Rd</span>
+        <span class="tag none">No restrictions</span>
+      </div>
+    </div>
+
+    <div class="lot-card has-restriction">
+      <div class="lot-num">18A</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Patterson</div>
+      <div class="lot-owner">Current: <span>Patterson</span></div>
+      <div class="lot-tags">
+        <span class="tag no-com">No commercial</span>
+        <span class="tag none">Many other restrictions</span>
+      </div>
+    </div>
+
+    <div class="lot-card">
+      <div class="lot-num">33</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">L'Heureux · 1992</div>
+      <div class="lot-owner">Current: <span>L'Heureux</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — in common</span>
+        <span class="tag none">No restrictions</span>
+      </div>
+    </div>
+
+    <div class="lot-card has-restriction">
+      <div class="lot-num">34</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Kimball · 1954</div>
+      <div class="lot-owner">Current: <span>Estes</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — as now travelled</span>
+        <span class="tag no-com">No commercial</span>
+      </div>
+    </div>
+
+    <div class="lot-card strongest">
+      <div class="lot-num">36</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Legere · 1951</div>
+      <div class="lot-owner">Current: <span>Curcio</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — camp road</span>
+        <span class="tag no-com">No commercial</span>
+        <span class="tag no-tent">No trailers</span>
+      </div>
+    </div>
+
+    <div class="lot-card">
+      <div class="lot-num">37</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Roy · 1992</div>
+      <div class="lot-owner">Current: <span>Roy</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">Easement — Siddall Rd</span>
+        <span class="tag none">No restrictions</span>
+      </div>
+    </div>
+
+    <div class="lot-card strongest">
+      <div class="lot-num">38</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Roy · 1955</div>
+      <div class="lot-owner">Current: <span>Tranchemontagne</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — camp road</span>
+        <span class="tag no-com">No commercial</span>
+        <span class="tag no-tent">No trailers</span>
+      </div>
+    </div>
+
+    <div class="lot-card has-restriction">
+      <div class="lot-num">40</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">McMillen · 1954</div>
+      <div class="lot-owner">Current: <span>Lewis</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — camp road</span>
+        <span class="tag no-com">No commercial</span>
+      </div>
+    </div>
+
+    <div class="lot-card">
+      <div class="lot-num">47</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Hardy · 1990</div>
+      <div class="lot-owner">Current: <span>Hardy</span></div>
+      <div class="lot-tags">
+        <span class="tag none">No ROW in deed</span>
+        <span class="tag none">No restrictions</span>
+      </div>
+    </div>
+
+    <div class="lot-card">
+      <div class="lot-num">48</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Troccoli · 1967</div>
+      <div class="lot-owner">Current: <span>Chayka</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — as now travelled</span>
+        <span class="tag none">No restrictions</span>
+      </div>
+    </div>
+
+    <div class="lot-card has-restriction">
+      <div class="lot-num">49</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">Ricard · 1949</div>
+      <div class="lot-owner">Current: <span>Rita Rose</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — new road</span>
+        <span class="tag no-com">No business enterprise</span>
+      </div>
+    </div>
+
+    <div class="lot-card has-restriction">
+      <div class="lot-num">52</div>
+      <div class="lot-divider"></div>
+      <div class="lot-grantee">McPherson · 1956</div>
+      <div class="lot-owner">Current: <span>Razummny</span></div>
+      <div class="lot-tags">
+        <span class="tag row-tag">ROW — as now travelled</span>
+        <span class="tag no-com">No commercial</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<div class="footer">
+  <div class="footer-mark">&#10086;</div>
+  <div class="footer-text">
+    Prepared by the Sand Pond Association, LLC &middot; Sanford, York County, Maine &middot; This infographic is for informational purposes only and is not legal advice. Data drawn from the York County Registry of Deeds and an abstractor&rsquo;s compilation dated April 24, 2026. Legal analysis reflects the preliminary assessment of Drummond Woodsum and is subject to their final written opinion prior to filing.
+  </div>
+</div>
+
+</div>
+</body>
+</html>
